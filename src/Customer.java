@@ -1,39 +1,36 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-enum State{ORDER_WAIT, FOOD_WAIT}
+enum CustomerState{ORDER_WAIT, FOOD_WAIT}
 
 public class Customer {
     private final String imageFile;
-    private final LocalDateTime startTime;
+    private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private State state;
+    private CustomerState customerState;
     private Crepe idealOrder;
     private Crepe realOrder;
 
     public Customer(String name, String imageFile, Crepe idealOrder) {
         this.imageFile = imageFile;
         this.startTime = LocalDateTime.now();
-        this.state = state.ORDER_WAIT;
+        this.customerState = CustomerState.ORDER_WAIT;
         this.idealOrder = idealOrder;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
+    public LocalDateTime getStartTime() { return startTime; }
+    public LocalDateTime getEndTime() { return endTime; }
+    public CustomerState getState() { return customerState; }
+    public Crepe getIdealOrder() { return idealOrder; }
+    public Crepe getRealOrder() { return realOrder; }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public Crepe getIdealOrder() {
-        return idealOrder;
-    }
-
-    public Crepe getRealOrder() {
-        return realOrder;
+    public void update(long time, ArrayList<String> input){
+        System.out.println(customerState);
+        switch (customerState){
+            case ORDER_WAIT:
+                break;
+            case FOOD_WAIT:
+                break;
+        }
     }
 }
