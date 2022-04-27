@@ -6,7 +6,7 @@ enum CustomerState{ORDER_WAIT, FOOD_WAIT}
 public class Customer {
     private final String imageFile;
     private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private long periode;                    // The periode that he dispose
     private CustomerState customerState;
     private Crepe idealOrder;
     private Crepe realOrder;
@@ -19,7 +19,7 @@ public class Customer {
     }
 
     public LocalDateTime getStartTime() { return startTime; }
-    public LocalDateTime getEndTime() { return endTime; }
+    public long getPeriode() { return periode; }
     public CustomerState getState() { return customerState; }
     public Crepe getIdealOrder() { return idealOrder; }
     public Crepe getRealOrder() { return realOrder; }
