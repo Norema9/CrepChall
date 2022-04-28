@@ -6,12 +6,12 @@ import javafx.scene.image.ImageView;
 
 public class OrderGamePlayGroup extends Group {
     private Customer customer;
-    private String OrderbackGroundGile;
-    private Image OrderbackGroundImage = new Image(OrderbackGroundGile);
-    private ImageView OrderbackGroundImageView = new ImageView(OrderbackGroundImage);
+    private String OrderBackGroundFile;   // must be defined before testing the class
+    private Image OrderBackGroundImage = new Image(OrderBackGroundFile);
+    private ImageView OrderBackGroundImageView = new ImageView(OrderBackGroundImage);
 
     public OrderGamePlayGroup(){
-        this.getChildren().add(OrderbackGroundImageView);
+        this.getChildren().add(OrderBackGroundImageView);
     }
 
     // to launch the animationTimer of this group
@@ -26,8 +26,9 @@ public class OrderGamePlayGroup extends Group {
     // A methode to update the scene : change in the characteristics in the project
     public void render(long l){
         // beginning by placing the background image
-        OrderbackGroundImageView.setViewport(new Rectangle2D(0,0,400,400));
+        OrderBackGroundImageView.setViewport(new Rectangle2D(0,0,400,400));
     }
+
     // The setters of this class
     public void setCustomer(Customer customer) { this.customer = customer; }
 }
