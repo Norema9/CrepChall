@@ -49,18 +49,25 @@ public class Crepe {
                 // We check if the degree of cooking is between 95% and 105% and if it is the same than
                 // the right one which is ordered by the customer
                 if(((degreeOfDoneness <= 95) || (degreeOfDoneness >= 105))
-                        && this.isTheSame(custWhoOrdIt.getIdealOrder())){
+                        && this.isTheSame(custWhoOrdIt.getRealOrder())){
                     crepeState = CrepeState.READY;
                 }
-                else if(crepeDuration > custWhoOrdIt.getPeriode()){
+                // We check if the degree of cooking is exceeded or not
+                else if(degreeOfDoneness > 105){
+                    crepeState = CrepeState.OVERCOOKED;
+                }
+                // We check if the duration of cooking is exceeded or not
+                    // if yes, the crepe is LATE
+                else if(crepeDuration > custWhoOrdIt.getPeriod()){
                     crepeState = CrepeState.LATE;
                 }
+                break;
         }
     }
 
     public boolean isTheSame(Crepe crepe){
-        if(toppings.containsAll(custWhoOrdIt.getIdealOrder().toppings)
-                && custWhoOrdIt.getIdealOrder().getToppings().containsAll(toppings)){
+        if(toppings.containsAll(custWhoOrdIt.getRealOrder().toppings)
+                && custWhoOrdIt.getRealOrder().getToppings().containsAll(toppings)){
             return true;
         }
         else{
@@ -68,7 +75,12 @@ public class Crepe {
         }
     }
 
+    // The getters of this classes
     public String getFlavor() { return flavor; }
     public String getCrepeFile() { return crepeFile; }
     public ArrayList<Ingredient> getToppings() { return toppings; }
+    public CrepeState getCrepeState() { return crepeState; }
+
+    // The setters of this classes
+    public void setCrepeState(CrepeState crepeState) { this.crepeState = crepeState; }
 }

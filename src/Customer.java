@@ -4,27 +4,21 @@ import java.util.ArrayList;
 enum CustomerState{ORDER_WAIT, FOOD_WAIT}
 
 public class Customer {
-    private final String imageFile;
+    private String crepeFile;
     private LocalDateTime startTime;
-    private long periode;                    // The periode that he dispose
+    private long period;                    // The period that he dispose
     private CustomerState customerState;
-    private Crepe idealOrder;
     private Crepe realOrder;
 
-    public Customer(String name, String imageFile, Crepe idealOrder) {
-        this.imageFile = imageFile;
+    public Customer(String crepeFile, Crepe idealOrder, long period) {
+        this.crepeFile = crepeFile;
         this.startTime = LocalDateTime.now();
         this.customerState = CustomerState.ORDER_WAIT;
-        this.idealOrder = idealOrder;
+        this.realOrder = idealOrder;
+        this.period = period;
     }
 
-    public LocalDateTime getStartTime() { return startTime; }
-    public long getPeriode() { return periode; }
-    public CustomerState getState() { return customerState; }
-    public Crepe getIdealOrder() { return idealOrder; }
-    public Crepe getRealOrder() { return realOrder; }
-
-    public void update(long time, ArrayList<String> input){
+    public void update(long time){
         System.out.println(customerState);
         switch (customerState){
             case ORDER_WAIT:
@@ -33,4 +27,13 @@ public class Customer {
                 break;
         }
     }
+
+    // The getters of this classes
+    public LocalDateTime getStartTime() { return startTime; }
+    public long getPeriod() { return period; }
+    public CustomerState getState() { return customerState; }
+    public Crepe getRealOrder() { return realOrder; }
+
+    // The setters of this classes
+    public void setCustomerState(CustomerState customerState) { this.customerState = customerState; }
 }
